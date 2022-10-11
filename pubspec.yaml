@@ -1,0 +1,48 @@
+name: kwalu_selli
+description: A new Flutter project.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.0-44.1.beta <3.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_launcher_icons: ^0.10.0
+  auto_route: ^4.0.1
+  bloc: ^8.0.2
+  bloc_test: ^9.0.3
+  cached_network_image: ^3.2.1
+  dio: ^4.0.4
+  flex_color_scheme: ^5.0.1
+  google_fonts: ^3.0.1
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.0.1
+  flutter_cache_manager: ^3.3.0
+  flutter_native_splash: ^2.2.8
+  flutter_secure_storage: ^5.0.2
+  freezed_annotation: ^2.1.0
+  shared_preferences: ^2.0.15
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  auto_route_generator: ^4.0.0
+  build_runner: ^2.2.0
+  freezed: ^2.1.0+1
+  injectable_generator: ^1.5.3
+  mocktail: ^0.3.0
+  moor_generator: ^4.6.0+1
+  flutter_lints: ^2.0.0
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/fonts/
