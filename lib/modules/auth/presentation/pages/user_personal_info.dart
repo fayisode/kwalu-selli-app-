@@ -1,78 +1,68 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/color/colors.dart';
 import '../../../../core/enviroment_config/auto_router.gr.dart';
-import '../../../../core/shared_widget/platform/platform_scaffold.dart';
-import '../../../../core/shared_widget/widget/text_form_field.dart';
-import '../../../../core/styles/padding.dart';
-import '../../../../core/styles/sizing.dart';
-import '../../../../core/utils/buttons/primary.dart';
-import '../../../../core/utils/extensions/page_ext.dart';
-import '../../../../core/utils/extensions/text_ext.dart';
+import '../../../../core/shared_widget/widget/loader.dart';
+import '../../../../core/shared_widget/widget/snackBar/snack_bar_widget.dart';
+import '../manager/bloc/register_bloc.dart';
+import '../widgets/user_personal_information_page_platform_scaffold.dart';
+
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+BuildContext? dialogContext;
 
 class UserPersonalInformationPage extends StatelessWidget {
   const UserPersonalInformationPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => PlatformScaffold(
-        bottomNavigation: Container(
-          padding: const CEdgeInsects.allMedium(),
-          color: Colors.transparent,
-          height: kDefaultSizing * 5.5,
-          child: PrimaryButton(
-            callback: () {
-              AutoRouter.of(context).push(
-                const AccountCreationSuccessRoute(),
-              );
-            },
-            title: 'Finish',
-            isActive: true,
-          ),
+  Widget build(BuildContext context) =>
+      BlocListener<RegisterBloc, RegisterState>(
+        listener: (BuildContext loader, RegisterState state) {
+          if (loader.read<RegisterBloc>().state.isSubmitting) {
+            _showLoadingWidget(loader);
+          } else {
+            _removeLoadingWidgetIfActive();
+            _processUseCaseResponse(loader, context);
+          }
+        },
+        child: UserPersonalInformationPagePlatformScaffold(
+          scaffoldKey: _scaffoldKey,
+          dialogContext: dialogContext,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const SizedBox(
-              height: 16 * 1.5,
-            ),
-            'Continue Sign Up'.heading3(),
-            const SizedBox(
-              height: 16 * 0.25,
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.75,
-              child:
-                  'Continue with KwaluSelli account creation by filling the information below'
-                      .smallTextRegular(
-                textColor: primaryColor[200],
-              ),
-            ),
-            const SizedBox(
-              height: 16 * 1.25,
-            ),
-            CTextFormField(
-              label: 'First Name',
-              hintText: 'e.g John',
-              errorMessage: () => null,
-            ),
-            CTextFormField(
-              label: 'Last Name',
-              hintText: 'e.g Dlamini',
-              errorMessage: () => null,
-            ),
-            CTextFormField(
-              label: 'National Id',
-              hintText: 'e.g 4512367823490',
-              errorMessage: () => null,
-            ),
-            CTextFormField(
-              label: 'Location',
-              hintText: 'e.g Matsapha, Swaziland',
-              errorMessage: () => null,
-            ),
-          ],
-        ).wrapWidgetWithPadding(context),
       );
+
+  void _showLoadingWidget(BuildContext loader) {
+    showDialog<dynamic>(
+      barrierColor: primaryColor[100]?.withOpacity(0.5),
+      context: _scaffoldKey.currentContext ?? loader,
+      builder: (BuildContext contexts) {
+        dialogContext = contexts;
+        return const CustomLoaderWidget();
+      },
+    );
+  }
+
+  void _removeLoadingWidgetIfActive() {
+    if (dialogContext != null) {
+      AutoRouter.of(_scaffoldKey.currentContext!).pop();
+      dialogContext = null;
+    }
+  }
+
+  void _processUseCaseResponse(BuildContext loader, BuildContext context) {
+    if (responseNotNull(loader) && responseIsSuccess(loader)) {
+      AutoRouter.of(context).replace(const AccountCreationSuccessRoute());
+    } else if (responseNotNull(loader) && !responseIsSuccess(loader)) {
+      snackBarErrorWidget(
+        context,
+        loader.read<RegisterBloc>().state.useCaseResponse!.message,
+      );
+    }
+  }
+
+  bool responseNotNull(BuildContext loader) =>
+      loader.read<RegisterBloc>().state.useCaseResponse != null;
+  bool responseIsSuccess(BuildContext loader) =>
+      loader.read<RegisterBloc>().state.useCaseResponse!.status == 1;
 }

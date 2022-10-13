@@ -25,7 +25,7 @@ class FailedApiResponse extends IApiResponse {
       FailedApiResponse(
         map['status'] != null ? map['status'] as int : 0,
         map['data'] != null ? map['data'] as Map<String, dynamic>? : null,
-        map['status_text'] != null ? map['status_text'] as String : '',
+        map['message'] != null ? map['message'] as String : '',
       );
 }
 

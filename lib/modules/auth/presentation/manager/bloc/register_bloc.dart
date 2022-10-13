@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -66,6 +67,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
               isSubmitting: false,
             ),
           );
+          debugPrint(state.nationalId.toString());
         },
         phoneNumberChanged: (_PhoneNumberChanged value) {
           emit(
@@ -90,18 +92,52 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           IApiResponse? useCaseResponse;
           final Result<Object> userInputResult = _checkIfValueValid();
           if (userInputResult.isRight) {
-            _emitIsSubmitting(emit);
+            emit(
+              state.copyWith(
+                useCaseResponse: null,
+                isSubmitting: true,
+              ),
+            );
             useCaseResponse = await _registerUser(emit);
           }
-          _emitUseCase(emit, useCaseResponse);
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              showErrorMessage: true,
+              useCaseResponse: useCaseResponse,
+            ),
+          );
         },
         moveToPersonalInfoUsed: (_MoveToPersonalInfoUsed value) {
           final Result<Object> userInputResult = _checkIfAccountValueValid();
+          if (userInputResult.isRight) {
+            emit(
+              state.copyWith(
+                moveToPersonalInfo: true,
+                useCaseResponse: null,
+                isSubmitting: false,
+                showErrorMessage: false,
+              ),
+            );
+          } else {
+            emit(
+              state.copyWith(
+                moveToPersonalInfo: false,
+                useCaseResponse: null,
+                isSubmitting: false,
+                showErrorMessage: true,
+              ),
+            );
+          }
+        },
+        clearMoveToPersonalInfoStateUsed:
+            (_ClearMoveToPersonalInfoStateUsed value) {
           emit(
             state.copyWith(
-              moveToPersonalInfo: true,
+              moveToPersonalInfo: false,
               useCaseResponse: null,
               isSubmitting: false,
+              showErrorMessage: false,
             ),
           );
         },
@@ -119,15 +155,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           state.nationalId,
         ],
       );
-
-  void _emitIsSubmitting(Emitter<RegisterState> emit) {
-    emit(
-      state.copyWith(
-        useCaseResponse: null,
-        isSubmitting: true,
-      ),
-    );
-  }
 
   Future<IApiResponse?> _registerUser(
     Emitter<RegisterState> emit,
@@ -150,19 +177,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         location: state.location,
         lastName: state.lastName.getValue,
       );
-
-  void _emitUseCase(
-    Emitter<RegisterState> emit,
-    IApiResponse? useCaseResponse,
-  ) {
-    emit(
-      state.copyWith(
-        isSubmitting: false,
-        showErrorMessage: true,
-        useCaseResponse: useCaseResponse,
-      ),
-    );
-  }
 
   Result<Object> _checkIfAccountValueValid() => Result<Object>.combile(
         results: <Result<Object>>[

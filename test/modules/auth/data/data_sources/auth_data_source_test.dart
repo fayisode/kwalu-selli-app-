@@ -24,7 +24,7 @@ void main() {
     const String testPath = '/signup';
     test('making a signup with valid details, return a success request',
         () async {
-      dioAdapter.onPost(
+      dioAdapter.onPut(
         '$_baseUrl$testPath',
         (MockServer request) => request.reply(201, {'status': 1}),
         data: _model.toJson(),
@@ -38,7 +38,7 @@ void main() {
 
     test('making a signup with invalid details, return a failed 404 request',
         () async {
-      dioAdapter.onPost(
+      dioAdapter.onPut(
         '$_baseUrl$testPath',
         (MockServer request) => request.reply(404, {'status': 0}),
         data: _model.toJson(),
@@ -53,7 +53,7 @@ void main() {
     test(
         'making a signup with internal server error, return a failed 500 request',
         () async {
-      dioAdapter.onPost(
+      dioAdapter.onPut(
         '$_baseUrl$testPath',
         (MockServer request) => request.reply(500, {'status': 0}),
         data: _model.toJson(),
@@ -67,7 +67,7 @@ void main() {
 
     test('making a signup with conflict details, return a failed request',
         () async {
-      dioAdapter.onPost(
+      dioAdapter.onPut(
         '$_baseUrl$testPath',
         (MockServer request) => request.reply(200, {'status': 0}),
         data: _model.toJson(),

@@ -118,9 +118,7 @@ String serverResponseToString(
       requestCancelled: (_) => 'Error Processing Request ',
       unauthorisedRequest: (_) => 'Unauthorized Request ',
       badRequest: (_) => 'Error Processing Request ',
-      notFound: (NotFound notFound) {
-        return notFound.reason;
-      },
+      notFound: (NotFound notFound) => notFound.reason,
       methodNotAllowed: (_) => 'Error Processing Request ',
       notAcceptable: (_) => 'Error Processing Request ',
       requestTimeout: (_) => 'Error Processing Request ',

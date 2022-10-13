@@ -34,4 +34,8 @@ extension PageContainer on Widget {
           child: this,
         ),
       );
+  Padding wrapBottomNavigation(BuildContext context) => Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: this,
+      );
 }

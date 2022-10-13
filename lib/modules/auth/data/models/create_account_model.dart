@@ -48,7 +48,7 @@ class CreateAccountModel extends Equatable {
         'firstName': firstName,
         'lastName': lastName,
         'nationalId': nationalId,
-        'phoneNumber': phoneNumber,
+        'phone': phoneNumber,
         'location': location,
       };
 }

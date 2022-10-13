@@ -10,5 +10,5 @@ extension StringExtensions on String {
 
   String get png => 'assets/images/png/$this.png';
 
-  String get gif => 'assets/gif/$this.gif';
+  String get gif => 'assets/images/gif/$this.gif';
 }

@@ -57,6 +57,6 @@ final Map<String, dynamic> _jsonValue = <String, dynamic>{
   'firstName': _testValue(),
   'lastName': _testValue(),
   'nationalId': _userId(),
-  'phoneNumber': _phoneNumber(),
+  'phone': _phoneNumber(),
   'location': _testValue(),
 };

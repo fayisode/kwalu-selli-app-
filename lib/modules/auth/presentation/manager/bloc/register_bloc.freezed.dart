@@ -27,6 +27,7 @@ mixin _$RegisterEvent {
     required TResult Function(String location) locationChanged,
     required TResult Function() submitUsed,
     required TResult Function() moveToPersonalInfoUsed,
+    required TResult Function() clearMoveToPersonalInfoStateUsed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +41,7 @@ mixin _$RegisterEvent {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +55,7 @@ mixin _$RegisterEvent {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +71,8 @@ mixin _$RegisterEvent {
     required TResult Function(_SubmitUsed value) submitUsed,
     required TResult Function(_MoveToPersonalInfoUsed value)
         moveToPersonalInfoUsed,
+    required TResult Function(_ClearMoveToPersonalInfoStateUsed value)
+        clearMoveToPersonalInfoStateUsed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +86,8 @@ mixin _$RegisterEvent {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -94,6 +101,8 @@ mixin _$RegisterEvent {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -191,6 +200,7 @@ class _$_EmailAddressChanged implements _EmailAddressChanged {
     required TResult Function(String location) locationChanged,
     required TResult Function() submitUsed,
     required TResult Function() moveToPersonalInfoUsed,
+    required TResult Function() clearMoveToPersonalInfoStateUsed,
   }) {
     return emailAddressChanged(email);
   }
@@ -207,6 +217,7 @@ class _$_EmailAddressChanged implements _EmailAddressChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
   }) {
     return emailAddressChanged?.call(email);
   }
@@ -223,6 +234,7 @@ class _$_EmailAddressChanged implements _EmailAddressChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (emailAddressChanged != null) {
@@ -244,6 +256,8 @@ class _$_EmailAddressChanged implements _EmailAddressChanged {
     required TResult Function(_SubmitUsed value) submitUsed,
     required TResult Function(_MoveToPersonalInfoUsed value)
         moveToPersonalInfoUsed,
+    required TResult Function(_ClearMoveToPersonalInfoStateUsed value)
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return emailAddressChanged(this);
   }
@@ -260,6 +274,8 @@ class _$_EmailAddressChanged implements _EmailAddressChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return emailAddressChanged?.call(this);
   }
@@ -276,6 +292,8 @@ class _$_EmailAddressChanged implements _EmailAddressChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (emailAddressChanged != null) {
@@ -369,6 +387,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     required TResult Function(String location) locationChanged,
     required TResult Function() submitUsed,
     required TResult Function() moveToPersonalInfoUsed,
+    required TResult Function() clearMoveToPersonalInfoStateUsed,
   }) {
     return passwordChanged(password);
   }
@@ -385,6 +404,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
   }) {
     return passwordChanged?.call(password);
   }
@@ -401,6 +421,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -422,6 +443,8 @@ class _$_PasswordChanged implements _PasswordChanged {
     required TResult Function(_SubmitUsed value) submitUsed,
     required TResult Function(_MoveToPersonalInfoUsed value)
         moveToPersonalInfoUsed,
+    required TResult Function(_ClearMoveToPersonalInfoStateUsed value)
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return passwordChanged(this);
   }
@@ -438,6 +461,8 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return passwordChanged?.call(this);
   }
@@ -454,6 +479,8 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -546,6 +573,7 @@ class _$_FirstNameChanged implements _FirstNameChanged {
     required TResult Function(String location) locationChanged,
     required TResult Function() submitUsed,
     required TResult Function() moveToPersonalInfoUsed,
+    required TResult Function() clearMoveToPersonalInfoStateUsed,
   }) {
     return firstNameChanged(firstName);
   }
@@ -562,6 +590,7 @@ class _$_FirstNameChanged implements _FirstNameChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
   }) {
     return firstNameChanged?.call(firstName);
   }
@@ -578,6 +607,7 @@ class _$_FirstNameChanged implements _FirstNameChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (firstNameChanged != null) {
@@ -599,6 +629,8 @@ class _$_FirstNameChanged implements _FirstNameChanged {
     required TResult Function(_SubmitUsed value) submitUsed,
     required TResult Function(_MoveToPersonalInfoUsed value)
         moveToPersonalInfoUsed,
+    required TResult Function(_ClearMoveToPersonalInfoStateUsed value)
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return firstNameChanged(this);
   }
@@ -615,6 +647,8 @@ class _$_FirstNameChanged implements _FirstNameChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return firstNameChanged?.call(this);
   }
@@ -631,6 +665,8 @@ class _$_FirstNameChanged implements _FirstNameChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (firstNameChanged != null) {
@@ -723,6 +759,7 @@ class _$_LastNameChanged implements _LastNameChanged {
     required TResult Function(String location) locationChanged,
     required TResult Function() submitUsed,
     required TResult Function() moveToPersonalInfoUsed,
+    required TResult Function() clearMoveToPersonalInfoStateUsed,
   }) {
     return lastNameChanged(lastName);
   }
@@ -739,6 +776,7 @@ class _$_LastNameChanged implements _LastNameChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
   }) {
     return lastNameChanged?.call(lastName);
   }
@@ -755,6 +793,7 @@ class _$_LastNameChanged implements _LastNameChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (lastNameChanged != null) {
@@ -776,6 +815,8 @@ class _$_LastNameChanged implements _LastNameChanged {
     required TResult Function(_SubmitUsed value) submitUsed,
     required TResult Function(_MoveToPersonalInfoUsed value)
         moveToPersonalInfoUsed,
+    required TResult Function(_ClearMoveToPersonalInfoStateUsed value)
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return lastNameChanged(this);
   }
@@ -792,6 +833,8 @@ class _$_LastNameChanged implements _LastNameChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return lastNameChanged?.call(this);
   }
@@ -808,6 +851,8 @@ class _$_LastNameChanged implements _LastNameChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (lastNameChanged != null) {
@@ -902,6 +947,7 @@ class _$_NationalIdChanged implements _NationalIdChanged {
     required TResult Function(String location) locationChanged,
     required TResult Function() submitUsed,
     required TResult Function() moveToPersonalInfoUsed,
+    required TResult Function() clearMoveToPersonalInfoStateUsed,
   }) {
     return nationalIdChanged(nationalId);
   }
@@ -918,6 +964,7 @@ class _$_NationalIdChanged implements _NationalIdChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
   }) {
     return nationalIdChanged?.call(nationalId);
   }
@@ -934,6 +981,7 @@ class _$_NationalIdChanged implements _NationalIdChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (nationalIdChanged != null) {
@@ -955,6 +1003,8 @@ class _$_NationalIdChanged implements _NationalIdChanged {
     required TResult Function(_SubmitUsed value) submitUsed,
     required TResult Function(_MoveToPersonalInfoUsed value)
         moveToPersonalInfoUsed,
+    required TResult Function(_ClearMoveToPersonalInfoStateUsed value)
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return nationalIdChanged(this);
   }
@@ -971,6 +1021,8 @@ class _$_NationalIdChanged implements _NationalIdChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return nationalIdChanged?.call(this);
   }
@@ -987,6 +1039,8 @@ class _$_NationalIdChanged implements _NationalIdChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (nationalIdChanged != null) {
@@ -1082,6 +1136,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     required TResult Function(String location) locationChanged,
     required TResult Function() submitUsed,
     required TResult Function() moveToPersonalInfoUsed,
+    required TResult Function() clearMoveToPersonalInfoStateUsed,
   }) {
     return phoneNumberChanged(phoneNumber);
   }
@@ -1098,6 +1153,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
   }) {
     return phoneNumberChanged?.call(phoneNumber);
   }
@@ -1114,6 +1170,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -1135,6 +1192,8 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     required TResult Function(_SubmitUsed value) submitUsed,
     required TResult Function(_MoveToPersonalInfoUsed value)
         moveToPersonalInfoUsed,
+    required TResult Function(_ClearMoveToPersonalInfoStateUsed value)
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return phoneNumberChanged(this);
   }
@@ -1151,6 +1210,8 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return phoneNumberChanged?.call(this);
   }
@@ -1167,6 +1228,8 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -1260,6 +1323,7 @@ class _$_LocationChanged implements _LocationChanged {
     required TResult Function(String location) locationChanged,
     required TResult Function() submitUsed,
     required TResult Function() moveToPersonalInfoUsed,
+    required TResult Function() clearMoveToPersonalInfoStateUsed,
   }) {
     return locationChanged(location);
   }
@@ -1276,6 +1340,7 @@ class _$_LocationChanged implements _LocationChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
   }) {
     return locationChanged?.call(location);
   }
@@ -1292,6 +1357,7 @@ class _$_LocationChanged implements _LocationChanged {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (locationChanged != null) {
@@ -1313,6 +1379,8 @@ class _$_LocationChanged implements _LocationChanged {
     required TResult Function(_SubmitUsed value) submitUsed,
     required TResult Function(_MoveToPersonalInfoUsed value)
         moveToPersonalInfoUsed,
+    required TResult Function(_ClearMoveToPersonalInfoStateUsed value)
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return locationChanged(this);
   }
@@ -1329,6 +1397,8 @@ class _$_LocationChanged implements _LocationChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return locationChanged?.call(this);
   }
@@ -1345,6 +1415,8 @@ class _$_LocationChanged implements _LocationChanged {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (locationChanged != null) {
@@ -1413,6 +1485,7 @@ class _$_SubmitUsed implements _SubmitUsed {
     required TResult Function(String location) locationChanged,
     required TResult Function() submitUsed,
     required TResult Function() moveToPersonalInfoUsed,
+    required TResult Function() clearMoveToPersonalInfoStateUsed,
   }) {
     return submitUsed();
   }
@@ -1429,6 +1502,7 @@ class _$_SubmitUsed implements _SubmitUsed {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
   }) {
     return submitUsed?.call();
   }
@@ -1445,6 +1519,7 @@ class _$_SubmitUsed implements _SubmitUsed {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (submitUsed != null) {
@@ -1466,6 +1541,8 @@ class _$_SubmitUsed implements _SubmitUsed {
     required TResult Function(_SubmitUsed value) submitUsed,
     required TResult Function(_MoveToPersonalInfoUsed value)
         moveToPersonalInfoUsed,
+    required TResult Function(_ClearMoveToPersonalInfoStateUsed value)
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return submitUsed(this);
   }
@@ -1482,6 +1559,8 @@ class _$_SubmitUsed implements _SubmitUsed {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return submitUsed?.call(this);
   }
@@ -1498,6 +1577,8 @@ class _$_SubmitUsed implements _SubmitUsed {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (submitUsed != null) {
@@ -1563,6 +1644,7 @@ class _$_MoveToPersonalInfoUsed implements _MoveToPersonalInfoUsed {
     required TResult Function(String location) locationChanged,
     required TResult Function() submitUsed,
     required TResult Function() moveToPersonalInfoUsed,
+    required TResult Function() clearMoveToPersonalInfoStateUsed,
   }) {
     return moveToPersonalInfoUsed();
   }
@@ -1579,6 +1661,7 @@ class _$_MoveToPersonalInfoUsed implements _MoveToPersonalInfoUsed {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
   }) {
     return moveToPersonalInfoUsed?.call();
   }
@@ -1595,6 +1678,7 @@ class _$_MoveToPersonalInfoUsed implements _MoveToPersonalInfoUsed {
     TResult Function(String location)? locationChanged,
     TResult Function()? submitUsed,
     TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (moveToPersonalInfoUsed != null) {
@@ -1616,6 +1700,8 @@ class _$_MoveToPersonalInfoUsed implements _MoveToPersonalInfoUsed {
     required TResult Function(_SubmitUsed value) submitUsed,
     required TResult Function(_MoveToPersonalInfoUsed value)
         moveToPersonalInfoUsed,
+    required TResult Function(_ClearMoveToPersonalInfoStateUsed value)
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return moveToPersonalInfoUsed(this);
   }
@@ -1632,6 +1718,8 @@ class _$_MoveToPersonalInfoUsed implements _MoveToPersonalInfoUsed {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
   }) {
     return moveToPersonalInfoUsed?.call(this);
   }
@@ -1648,6 +1736,8 @@ class _$_MoveToPersonalInfoUsed implements _MoveToPersonalInfoUsed {
     TResult Function(_LocationChanged value)? locationChanged,
     TResult Function(_SubmitUsed value)? submitUsed,
     TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
     required TResult orElse(),
   }) {
     if (moveToPersonalInfoUsed != null) {
@@ -1659,6 +1749,169 @@ class _$_MoveToPersonalInfoUsed implements _MoveToPersonalInfoUsed {
 
 abstract class _MoveToPersonalInfoUsed implements RegisterEvent {
   const factory _MoveToPersonalInfoUsed() = _$_MoveToPersonalInfoUsed;
+}
+
+/// @nodoc
+abstract class _$$_ClearMoveToPersonalInfoStateUsedCopyWith<$Res> {
+  factory _$$_ClearMoveToPersonalInfoStateUsedCopyWith(
+          _$_ClearMoveToPersonalInfoStateUsed value,
+          $Res Function(_$_ClearMoveToPersonalInfoStateUsed) then) =
+      __$$_ClearMoveToPersonalInfoStateUsedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ClearMoveToPersonalInfoStateUsedCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res>
+    implements _$$_ClearMoveToPersonalInfoStateUsedCopyWith<$Res> {
+  __$$_ClearMoveToPersonalInfoStateUsedCopyWithImpl(
+      _$_ClearMoveToPersonalInfoStateUsed _value,
+      $Res Function(_$_ClearMoveToPersonalInfoStateUsed) _then)
+      : super(_value, (v) => _then(v as _$_ClearMoveToPersonalInfoStateUsed));
+
+  @override
+  _$_ClearMoveToPersonalInfoStateUsed get _value =>
+      super._value as _$_ClearMoveToPersonalInfoStateUsed;
+}
+
+/// @nodoc
+
+class _$_ClearMoveToPersonalInfoStateUsed
+    implements _ClearMoveToPersonalInfoStateUsed {
+  const _$_ClearMoveToPersonalInfoStateUsed();
+
+  @override
+  String toString() {
+    return 'RegisterEvent.clearMoveToPersonalInfoStateUsed()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ClearMoveToPersonalInfoStateUsed);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email) emailAddressChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function(String firstName) firstNameChanged,
+    required TResult Function(String lastName) lastNameChanged,
+    required TResult Function(String nationalId) nationalIdChanged,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(String location) locationChanged,
+    required TResult Function() submitUsed,
+    required TResult Function() moveToPersonalInfoUsed,
+    required TResult Function() clearMoveToPersonalInfoStateUsed,
+  }) {
+    return clearMoveToPersonalInfoStateUsed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String email)? emailAddressChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function(String firstName)? firstNameChanged,
+    TResult Function(String lastName)? lastNameChanged,
+    TResult Function(String nationalId)? nationalIdChanged,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function()? submitUsed,
+    TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
+  }) {
+    return clearMoveToPersonalInfoStateUsed?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? emailAddressChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function(String firstName)? firstNameChanged,
+    TResult Function(String lastName)? lastNameChanged,
+    TResult Function(String nationalId)? nationalIdChanged,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String location)? locationChanged,
+    TResult Function()? submitUsed,
+    TResult Function()? moveToPersonalInfoUsed,
+    TResult Function()? clearMoveToPersonalInfoStateUsed,
+    required TResult orElse(),
+  }) {
+    if (clearMoveToPersonalInfoStateUsed != null) {
+      return clearMoveToPersonalInfoStateUsed();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_EmailAddressChanged value) emailAddressChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_FirstNameChanged value) firstNameChanged,
+    required TResult Function(_LastNameChanged value) lastNameChanged,
+    required TResult Function(_NationalIdChanged value) nationalIdChanged,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_LocationChanged value) locationChanged,
+    required TResult Function(_SubmitUsed value) submitUsed,
+    required TResult Function(_MoveToPersonalInfoUsed value)
+        moveToPersonalInfoUsed,
+    required TResult Function(_ClearMoveToPersonalInfoStateUsed value)
+        clearMoveToPersonalInfoStateUsed,
+  }) {
+    return clearMoveToPersonalInfoStateUsed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_EmailAddressChanged value)? emailAddressChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_FirstNameChanged value)? firstNameChanged,
+    TResult Function(_LastNameChanged value)? lastNameChanged,
+    TResult Function(_NationalIdChanged value)? nationalIdChanged,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_SubmitUsed value)? submitUsed,
+    TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
+  }) {
+    return clearMoveToPersonalInfoStateUsed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_EmailAddressChanged value)? emailAddressChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_FirstNameChanged value)? firstNameChanged,
+    TResult Function(_LastNameChanged value)? lastNameChanged,
+    TResult Function(_NationalIdChanged value)? nationalIdChanged,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_LocationChanged value)? locationChanged,
+    TResult Function(_SubmitUsed value)? submitUsed,
+    TResult Function(_MoveToPersonalInfoUsed value)? moveToPersonalInfoUsed,
+    TResult Function(_ClearMoveToPersonalInfoStateUsed value)?
+        clearMoveToPersonalInfoStateUsed,
+    required TResult orElse(),
+  }) {
+    if (clearMoveToPersonalInfoStateUsed != null) {
+      return clearMoveToPersonalInfoStateUsed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClearMoveToPersonalInfoStateUsed implements RegisterEvent {
+  const factory _ClearMoveToPersonalInfoStateUsed() =
+      _$_ClearMoveToPersonalInfoStateUsed;
 }
 
 /// @nodoc

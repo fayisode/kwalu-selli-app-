@@ -30,7 +30,7 @@ class AuthDataSourceImpl implements IAuthDataSource {
 
   @override
   Future<IApiResponse> signUpUser(CreateAccountModel model) => Task<dynamic>(
-        () => _api.dioClient.post<Map<String, dynamic>>(
+        () => _api.dioClient.put<Map<String, dynamic>>(
           '/signup',
           options: Options(
             contentType: Headers.formUrlEncodedContentType,
@@ -46,11 +46,8 @@ class AuthDataSourceImpl implements IAuthDataSource {
 
   IApiResponse _handleResponse(Either<ServerResponse, dynamic> result) =>
       result.fold(
-          (ServerResponse failure) => FailedApiResponse(
-                0,
-                null,
-                serverResponseToString(failure),
-              ),
+          (ServerResponse failure) =>
+              FailedApiResponse(0, null, serverResponseToString(failure)),
           // ignore: avoid_annotating_with_dynamic
           (dynamic success) {
         if (success['status'] == 1) {

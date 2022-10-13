@@ -19,4 +19,6 @@ class RegisterEvent with _$RegisterEvent {
   const factory RegisterEvent.submitUsed() = _SubmitUsed;
   const factory RegisterEvent.moveToPersonalInfoUsed() =
       _MoveToPersonalInfoUsed;
+  const factory RegisterEvent.clearMoveToPersonalInfoStateUsed() =
+      _ClearMoveToPersonalInfoStateUsed;
 }

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:kwalu_selli/modules/auth/presentation/widgets/onboard_widget.dart';
 
+import 'core/enviroment_config/injection.dart';
 import 'core/shared_widget/platform/page.dart';
 
 void main() {
@@ -15,7 +16,7 @@ void main() {
       statusBarColor: Colors.white,
     ),
   );
-
+  configureDependencies();
   runApp(const PlatformPage());
   FlutterNativeSplash.remove();
 }
