@@ -5,7 +5,7 @@ import 'package:kwalu_selli/modules/auth/domain/value_objects/phone_number.dart'
 void main() {
   test('given an invalid phone number, return failed result', () {
     final Result<UserPhoneNumber> result = UserPhoneNumber.create(
-      input: '0801',
+      phoneNumber: '0801',
     );
 
     expect(result.isLeft, true);
@@ -14,7 +14,7 @@ void main() {
   test('given a valid phone number, return success result', () {
     const String phoneNum = '78665627';
     final Result<UserPhoneNumber> result = UserPhoneNumber.create(
-      input: phoneNum,
+      phoneNumber: phoneNum,
     );
 
     expect(result.isRight, true);
@@ -25,12 +25,12 @@ void main() {
       "given a value that doesn't meet the require length, return a failed result",
       () {
     final Result<UserPhoneNumber> result = UserPhoneNumber.create(
-      input: '7897088',
+      phoneNumber: '7897088',
     );
     expect(result.isLeft, true);
 
     final Result<UserPhoneNumber> result2 = UserPhoneNumber.create(
-      input: '78970888778',
+      phoneNumber: '78970888778',
     );
     expect(result2.isLeft, true);
   });

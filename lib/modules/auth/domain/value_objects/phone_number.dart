@@ -5,17 +5,17 @@ import '../../../../core/utils/error/errors.dart';
 import '../../../../core/utils/values/guard.dart';
 
 class UserPhoneNumber extends ValueObject<UserPhoneNumber> {
-  const UserPhoneNumber(this.input) : super(input);
+  const UserPhoneNumber._(this.input) : super(input);
   static int minLength = 8;
   static int maxLength = 8;
   final String input;
 
-  static Result<UserPhoneNumber> create({required String input}) {
+  static Result<UserPhoneNumber> create({required String phoneNumber}) {
     Result<String> result = Guard<String>().combine(results: [
-      Guard<String>()
-          .againstNullOrUndefined(value: input, valueName: 'Phone Number'),
-      Guard<String>()
-          .isNumberWithinRange(value: input, min: minLength, max: maxLength),
+      Guard<String>().againstNullOrUndefined(
+          value: phoneNumber, valueName: 'Phone Number'),
+      Guard<String>().isNumberWithinRange(
+          value: phoneNumber, min: minLength, max: maxLength),
     ]);
 
     if (result.isLeft) {
@@ -24,6 +24,6 @@ class UserPhoneNumber extends ValueObject<UserPhoneNumber> {
       );
     }
 
-    return Result.ok(value: UserPhoneNumber(input));
+    return Result.ok(value: UserPhoneNumber._(phoneNumber));
   }
 }

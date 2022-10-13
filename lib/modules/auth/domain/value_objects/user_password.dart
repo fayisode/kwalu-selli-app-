@@ -2,10 +2,8 @@ import 'package:kwalu_selli/core/utils/values/guard.dart';
 import 'package:kwalu_selli/core/utils/values/result.dart';
 import 'package:kwalu_selli/core/utils/values/value_object.dart';
 
-import '../../../../core/utils/values/value_object.dart';
-
 class UserPassword extends ValueObject<UserPassword> {
-  const UserPassword(this.input) : super(input);
+  const UserPassword._(this.input) : super(input);
 
   static Result<UserPassword> create({required String password}) {
     final Result<String> result = Guard<String>().combine(
@@ -26,7 +24,7 @@ class UserPassword extends ValueObject<UserPassword> {
       return Result<UserPassword>.fail(error: result.error);
     }
 
-    return Result.ok(value: UserPassword(password));
+    return Result.ok(value: UserPassword._(password));
   }
 
   final String input;

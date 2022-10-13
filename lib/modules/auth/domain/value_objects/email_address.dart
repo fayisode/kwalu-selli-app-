@@ -9,11 +9,11 @@ class UserEmailAddress extends ValueObject<UserEmailAddress> {
   ) : super(input);
 
   static Result<UserEmailAddress> create({
-    String input = '',
+    String email = '',
   }) {
     final Guard<String> guard = Guard<String>();
     final Result<String> nullOrUndefineCheck = guard.againstNullOrUndefined(
-      value: input,
+      value: email,
       valueName: 'Email Address',
     );
     if (nullOrUndefineCheck.isLeft) {
@@ -23,11 +23,11 @@ class UserEmailAddress extends ValueObject<UserEmailAddress> {
     }
 
     final Result<String> emailCheckResult = guard.isEmailAddress(
-      value: input,
+      value: email,
     );
     if (emailCheckResult.isRight) {
       return Result<UserEmailAddress>.ok(
-        value: UserEmailAddress._(input),
+        value: UserEmailAddress._(email),
       );
     } else {
       return Result<UserEmailAddress>.fail(

@@ -5,7 +5,7 @@ import '../../../../core/utils/values/guard.dart';
 import '../../../../core/utils/values/value_object.dart';
 
 class UserNationalId extends ValueObject<UserNationalId> {
-  const UserNationalId(this.input) : super(input);
+  const UserNationalId._(this.input) : super(input);
 
   final String input;
 
@@ -25,7 +25,7 @@ class UserNationalId extends ValueObject<UserNationalId> {
       max: 13,
     );
     if (typeCheckResult.isRight) {
-      return Result.ok(value: UserNationalId(id));
+      return Result.ok(value: UserNationalId._(id));
     } else {
       return Result.fail(
         error: KwaluSelliValueError('Please enter a valid national id'),

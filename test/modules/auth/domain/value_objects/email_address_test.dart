@@ -5,7 +5,7 @@ import 'package:kwalu_selli/modules/auth/domain/value_objects/email_address.dart
 void main() {
   test('given a valid email, return success result', () {
     final Result<UserEmailAddress> result = UserEmailAddress.create(
-      input: 'test@test.com',
+      email: 'test@test.com',
     );
 
     expect(result.isRight, true);
@@ -13,15 +13,15 @@ void main() {
 
   test('given an invalid email, return a failed result', () {
     final Result<UserEmailAddress> result = UserEmailAddress.create(
-      input: 'test',
+      email: 'test',
     );
 
     final Result<UserEmailAddress> result2 = UserEmailAddress.create(
-      input: 'test@test.',
+      email: 'test@test.',
     );
 
     final Result<UserEmailAddress> result3 = UserEmailAddress.create(
-      input: '0801',
+      email: '0801',
     );
 
     expect(result.isLeft, true);
