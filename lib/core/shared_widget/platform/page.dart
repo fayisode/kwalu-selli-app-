@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../modules/auth/presentation/manager/bloc/register_bloc.dart';
 import '../../enviroment_config/auto_router.gr.dart';
+import '../../enviroment_config/injection.dart';
 import 'light_theme.dart';
 
 class PlatformPage extends StatelessWidget {
@@ -13,13 +16,20 @@ class PlatformPage extends StatelessWidget {
     final GlobalKey<ScaffoldMessengerState> scaffoldKey =
         GlobalKey<ScaffoldMessengerState>();
     final AppRouter appRouter = AppRouter();
-    return MaterialApp.router(
-      scaffoldMessengerKey: scaffoldKey,
-      routerDelegate: appRouter.delegate(),
-      routeInformationParser: appRouter.defaultRouteParser(),
-      debugShowCheckedModeBanner: false,
-      theme: flexThemeLight,
-      darkTheme: flexThemeLight,
+    return MultiBlocProvider(
+      providers: <BlocProvider<Object?>>[
+        BlocProvider<RegisterBloc>(
+          create: (BuildContext context) => getIt<RegisterBloc>(),
+        ),
+      ],
+      child: MaterialApp.router(
+        scaffoldMessengerKey: scaffoldKey,
+        routerDelegate: appRouter.delegate(),
+        routeInformationParser: appRouter.defaultRouteParser(),
+        debugShowCheckedModeBanner: false,
+        theme: flexThemeLight,
+        darkTheme: flexThemeLight,
+      ),
     );
   }
 }

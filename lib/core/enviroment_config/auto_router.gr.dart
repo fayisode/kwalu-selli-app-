@@ -11,44 +11,78 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i2;
-import 'package:flutter/material.dart' as _i3;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
 
 import '../../main.dart' as _i1;
+import '../../modules/auth/presentation/pages/account_creation_success.dart'
+    as _i4;
+import '../../modules/auth/presentation/pages/user_account_info.dart' as _i2;
+import '../../modules/auth/presentation/pages/user_personal_info.dart' as _i3;
 
-class AppRouter extends _i2.RootStackRouter {
-  AppRouter([_i3.GlobalKey<_i3.NavigatorState>? navigatorKey])
+class AppRouter extends _i5.RootStackRouter {
+  AppRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i2.PageFactory> pagesMap = {
+  final Map<String, _i5.PageFactory> pagesMap = {
     MyHomeRoute.name: (routeData) {
       final args = routeData.argsAs<MyHomeRouteArgs>(
           orElse: () => const MyHomeRouteArgs());
-      return _i2.MaterialPageX<dynamic>(
+      return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i1.MyHomePage(
           key: args.key,
           title: args.title,
         ),
       );
-    }
+    },
+    UserAccountInformationRoute.name: (routeData) {
+      return _i5.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i2.UserAccountInformationPage(),
+      );
+    },
+    UserPersonalInformationRoute.name: (routeData) {
+      return _i5.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i3.UserPersonalInformationPage(),
+      );
+    },
+    AccountCreationSuccessRoute.name: (routeData) {
+      return _i5.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i4.AccountCreationSuccessPage(),
+      );
+    },
   };
 
   @override
-  List<_i2.RouteConfig> get routes => [
-        _i2.RouteConfig(
+  List<_i5.RouteConfig> get routes => [
+        _i5.RouteConfig(
           MyHomeRoute.name,
           path: '/',
-        )
+        ),
+        _i5.RouteConfig(
+          UserAccountInformationRoute.name,
+          path: '/user-account-information-page',
+        ),
+        _i5.RouteConfig(
+          UserPersonalInformationRoute.name,
+          path: '/user-personal-information-page',
+        ),
+        _i5.RouteConfig(
+          AccountCreationSuccessRoute.name,
+          path: '/account-creation-success-page',
+        ),
       ];
 }
 
 /// generated route for
 /// [_i1.MyHomePage]
-class MyHomeRoute extends _i2.PageRouteInfo<MyHomeRouteArgs> {
+class MyHomeRoute extends _i5.PageRouteInfo<MyHomeRouteArgs> {
   MyHomeRoute({
-    _i3.Key? key,
+    _i6.Key? key,
     String title = '',
   }) : super(
           MyHomeRoute.name,
@@ -68,7 +102,7 @@ class MyHomeRouteArgs {
     this.title = '',
   });
 
-  final _i3.Key? key;
+  final _i6.Key? key;
 
   final String title;
 
@@ -76,4 +110,40 @@ class MyHomeRouteArgs {
   String toString() {
     return 'MyHomeRouteArgs{key: $key, title: $title}';
   }
+}
+
+/// generated route for
+/// [_i2.UserAccountInformationPage]
+class UserAccountInformationRoute extends _i5.PageRouteInfo<void> {
+  const UserAccountInformationRoute()
+      : super(
+          UserAccountInformationRoute.name,
+          path: '/user-account-information-page',
+        );
+
+  static const String name = 'UserAccountInformationRoute';
+}
+
+/// generated route for
+/// [_i3.UserPersonalInformationPage]
+class UserPersonalInformationRoute extends _i5.PageRouteInfo<void> {
+  const UserPersonalInformationRoute()
+      : super(
+          UserPersonalInformationRoute.name,
+          path: '/user-personal-information-page',
+        );
+
+  static const String name = 'UserPersonalInformationRoute';
+}
+
+/// generated route for
+/// [_i4.AccountCreationSuccessPage]
+class AccountCreationSuccessRoute extends _i5.PageRouteInfo<void> {
+  const AccountCreationSuccessRoute()
+      : super(
+          AccountCreationSuccessRoute.name,
+          path: '/account-creation-success-page',
+        );
+
+  static const String name = 'AccountCreationSuccessRoute';
 }

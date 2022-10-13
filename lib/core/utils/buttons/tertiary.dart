@@ -95,7 +95,7 @@ class TertiaryButton extends StatelessWidget {
         }),
       );
 
-  Color? textColor() => isActive ? primaryColor[600] : primaryColor[200];
+  Color? textColor() => isActive ? primaryColor[400] : primaryColor[200];
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

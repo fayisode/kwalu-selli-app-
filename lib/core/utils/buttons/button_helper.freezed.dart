@@ -100,21 +100,12 @@ class __$$_IsWithRightIconCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_IsWithRightIcon
-    with DiagnosticableTreeMixin
-    implements _IsWithRightIcon {
+class _$_IsWithRightIcon implements _IsWithRightIcon {
   const _$_IsWithRightIcon();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DefinedButtonType.isWithRightIcon()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'DefinedButtonType.isWithRightIcon'));
   }
 
   @override
@@ -220,21 +211,12 @@ class __$$_IsWithLeftIconCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_IsWithLeftIcon
-    with DiagnosticableTreeMixin
-    implements _IsWithLeftIcon {
+class _$_IsWithLeftIcon implements _IsWithLeftIcon {
   const _$_IsWithLeftIcon();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DefinedButtonType.isWithLeftIcon()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'DefinedButtonType.isWithLeftIcon'));
   }
 
   @override
@@ -340,19 +322,12 @@ class __$$_IsWithNoIconCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_IsWithNoIcon with DiagnosticableTreeMixin implements _IsWithNoIcon {
+class _$_IsWithNoIcon implements _IsWithNoIcon {
   const _$_IsWithNoIcon();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DefinedButtonType.isWithNoIcon()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'DefinedButtonType.isWithNoIcon'));
   }
 
   @override
@@ -516,18 +491,12 @@ class __$$_IsSmallCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_IsSmall with DiagnosticableTreeMixin implements _IsSmall {
+class _$_IsSmall implements _IsSmall {
   const _$_IsSmall();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DefinedButtonSize.isSmall()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'DefinedButtonSize.isSmall'));
   }
 
   @override
@@ -624,18 +593,12 @@ class __$$_IsBigCopyWithImpl<$Res> extends _$DefinedButtonSizeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_IsBig with DiagnosticableTreeMixin implements _IsBig {
+class _$_IsBig implements _IsBig {
   const _$_IsBig();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DefinedButtonSize.isBig()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'DefinedButtonSize.isBig'));
   }
 
   @override

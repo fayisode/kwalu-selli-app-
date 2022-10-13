@@ -32,7 +32,7 @@ const FlexSubThemesData _subThemesData = FlexSubThemesData(
   bottomSheetRadius: 24,
   inputDecoratorSchemeColor: SchemeColor.primary,
   chipSchemeColor: SchemeColor.primary,
-  bottomNavigationBarSchemeColor: SchemeColor.primary,
+  // navigationBarBackgroundSchemeColor: SchemeColor.primary,
   bottomNavigationBarBackgroundSchemeColor: SchemeColor.background,
 );
 
@@ -43,6 +43,8 @@ final VisualDensity _visualDensity = FlexColorScheme.comfortablePlatformDensity;
 final TargetPlatform _platform = defaultTargetPlatform;
 
 ThemeData flexThemeLight = FlexThemeData.light(
+  scaffoldBackground: Colors.white,
+  appBarBackground: Colors.white,
   colors: _useScheme ? null : _schemeLight,
   scheme: _scheme,
   appBarElevation: _appBarElevation,
@@ -51,7 +53,6 @@ ThemeData flexThemeLight = FlexThemeData.light(
   blendLevel: _blendLevel,
   tooltipsMatchBackground: _tooltipsMatchBackground,
   fontFamily: _fontFamily,
-  useSubThemes: _useSubThemes,
   subThemesData: _subThemesData,
   visualDensity: _visualDensity,
   platform: _platform,

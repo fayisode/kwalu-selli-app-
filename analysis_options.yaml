@@ -1,29 +1,96 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
+#Link: https://dart-lang.github.io/linter/lints/options/options.html
+include: all_lint_rules.yaml
+analyzer:
+  strong-mode:
+    # Will become the default once non-nullable types land
+    # https://github.com/dart-lang/sdk/issues/31410#issuecomment-510683629
+    implicit-casts: false
+    implicit-dynamic: false
+
+  errors:
+   # Without ignore here, we cause import of all_lint_rules to warn, because some rules conflict.
+    # We explicitly enabled even conflicting rules and are fixing the conflicts in this file.
+    included_file_warning: ignore
+
+    # Treat missing required parameters as an error, not as a hint or a warning.
+    missing_required_param: error
+
+    # Treat missing returns as an error, not as a hint or a warning.
+    missing_return: error
+
+    # Treat prefer double quote rule as not needed
+    prefer_double_quotes: false
+    
+    # Treat prefer final when not reassigned as not needed
+    prefer_final_parameters: false
+
+    # Treat relative import as not needed
+    prefer_relative_imports: false 
+
+    # Treat package import as not needed 
+    always_use_package_imports: false
+
+    # Treat omit local variabel type as not needed
+    omit_local_variable_types: false
+    
+    # Treat avoid closure parameter type as not neede
+    avoid_types_on_closure_parameters: false
+
+    # Treat cascade invocation as not needed
+    cascade_invocations: false
+
+    #Treat todo as not needed
+    flutter_style_todos: false
+
+    #unnecesayr final 
+    unnecessary_final: false
+    #Treat privat
+    library_private_types_in_public_api: false
+
+    public_member_api_docs: false
+    
+    avoid_catches_without_on_clauses: false
+    # DON'T assign new values to parameters of methods or functions.
+    #
+    # https://dart-lang.github.io/linter/lints/parameter_assignments.html
+    #
+    # Treat assigning new values to a parameter as a warning. We would almost like to set this
+    # to an error. However, this warning rule or even more so if set to an error, can sometimes
+    # be a bit problematic you include other code directly that does it a lot.
+    # It does however, make code safer when this cannot be done without involving
+    # an extra local variable for clarity and safety. Enabling this error, even as just a warning,
+    # does get in the way a bit if all you want to do is a null to default value release runtime
+    # safety/fallback assignment. For that use case you have to add a local rule override. With
+    # null-safety, the need for this kind of null check and re-assignment to default if null,
+    # pretty much goes away. Considering the comment in:
+    # https://dart-lang.github.io/linter/lints/parameter_assignments.html:
+    # "Assigning new values to parameters is generally a bad practice unless an operator
+    # such as ??= is used. Otherwise, arbitrarily reassigning parameters is usually a mistake."
+    # One might even think the rule would allow using the ??= operator, but it does not. For now,
+    # we keep this lint as warning and overriding locally with:
+    #
+    # ignore: parameter_assignments
+    #
+    # When we need it for the ??= operator, or some copy/paste in of some code that does things
+    # that needs it too, and that we don't want to deal with fixing at the moment.
+    parameter_assignments: warning
+
+    # Allow having TODOs in the code.
+    todo: ignore
+
+  exclude:
+    # Generated for Flutter web apps. Since it is auto-generated, errors should be ignored
+    - "**/*.g.dart"
+    - "**/*.gr.dart"
+    - "**/*.freezed.dart"
+    - "**/*.mocks.dart"
+    - "**/*.config.dart"
+    - "test/.test_coverage.dart"
+    - "bin/cache/**"
+    - "lib/generated_plugin_registrant.dart"
+
+# LINTER Preferences
 #
-# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
-# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
-# invoked from the command line by running `flutter analyze`.
-
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
-include: package:flutter_lints/flutter.yaml
-
+# Explicitly disable only the rules we do not want.
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at
-  # https://dart-lang.github.io/linter/lints/index.html.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
-
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
