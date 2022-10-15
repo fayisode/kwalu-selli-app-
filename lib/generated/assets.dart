@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String gifLoading = 'assets/images/gif/loading.gif';
   static const String imagesPngBlackBackground =
       'assets/images/png/black_background.png';
   static const String pngBlackBackground =
