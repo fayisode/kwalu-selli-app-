@@ -1,12 +1,5 @@
 import '../../database/cache.dart';
 
-String apiErrorMessage(dynamic value) {
-  if (value['response'] == null) {
-    return value['status'].toString();
-  }
-  return value['response'].toString();
-}
-
 abstract class IApiResponse {
   IApiResponse(this.status, this.data, this.message);
   final int status;

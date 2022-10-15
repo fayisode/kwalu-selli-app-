@@ -38,9 +38,16 @@ void main() {
 
     test('making a signup with invalid details, return a failed 404 request',
         () async {
+      const String message = 'Value not valid';
       dioAdapter.onPut(
         '$_baseUrl$testPath',
-        (MockServer request) => request.reply(404, {'status': 0}),
+        (MockServer request) {
+          final Map<String, Object> responseMap = {
+            'status': 0,
+            'message': message
+          };
+          return request.reply(404, responseMap);
+        },
         data: _model.toJson(),
         queryParameters: <String, dynamic>{},
         headers: <String, dynamic>{},
@@ -48,6 +55,7 @@ void main() {
       final IApiResponse result = await dataSource.signUpUser(_model);
 
       expect(result, isA<FailedApiResponse>());
+      expect(result.message, message);
     });
 
     test(
@@ -63,6 +71,7 @@ void main() {
       final IApiResponse result = await dataSource.signUpUser(_model);
 
       expect(result, isA<FailedApiResponse>());
+      expect(result.message, 'Error Processing Request ');
     });
 
     test('making a signup with conflict details, return a failed request',
