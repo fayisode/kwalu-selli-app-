@@ -9,17 +9,18 @@ class ProductUser extends Entities<_ProductObject> {
 
   UniqueEntityId get id => _id ?? UniqueEntityId('');
   static Result<ProductUser> create(
-      {required UniqueEntityId id,
-      required UserPassword password,
-      required UserEmailAddress email}) {
-    return Result<ProductUser>.ok(
+          {required UniqueEntityId id,
+          required UserPassword password,
+          required UserEmailAddress email}) =>
+      Result<ProductUser>.ok(
         value: ProductUser._(
-            _ProductObject(
-              password,
-              email,
-            ),
-            id));
-  }
+          _ProductObject(
+            password,
+            email,
+          ),
+          id,
+        ),
+      );
 
   final UniqueEntityId? _id;
   final _ProductObject object;

@@ -3,32 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/color/colors.dart';
-import '../../../../core/enviroment_config/auto_router.gr.dart';
 import '../../../../core/shared_widget/widget/loader.dart';
 import '../../../../core/shared_widget/widget/snackBar/snack_bar_widget.dart';
-import '../manager/bloc/register_bloc.dart';
-import '../widgets/user_personal_information_page_platform_scaffold.dart';
+import '../manager/bloc/login_bloc.dart';
+import '../widgets/user_login_page_platform_scaffold.dart';
 
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 BuildContext? dialogContext;
 
-class UserPersonalInformationPage extends StatelessWidget {
-  const UserPersonalInformationPage({Key? key}) : super(key: key);
+class UserLoginPage extends StatelessWidget {
+  const UserLoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) =>
-      BlocListener<RegisterBloc, RegisterState>(
-        listener: (BuildContext loader, RegisterState state) {
-          if (loader.read<RegisterBloc>().state.isSubmitting) {
+  Widget build(BuildContext context) => BlocListener<LoginBloc, LoginState>(
+        listener: (BuildContext loader, LoginState state) {
+          if (loader.read<LoginBloc>().state.isSubmitting) {
             _showLoadingWidget(loader);
           } else {
             _removeLoadingWidgetIfActive();
             _processUseCaseResponse(loader, context);
           }
         },
-        child: UserPersonalInformationPagePlatformScaffold(
+        child: UserLoginPagePlatformScaffold(
           scaffoldKey: _scaffoldKey,
-          // dialogContext: dialogContext,
         ),
       );
 
@@ -52,17 +49,17 @@ class UserPersonalInformationPage extends StatelessWidget {
 
   void _processUseCaseResponse(BuildContext loader, BuildContext context) {
     if (responseNotNull(loader) && responseIsSuccess(loader)) {
-      AutoRouter.of(context).replace(const AccountCreationSuccessRoute());
+      // AutoRouter.of(context).replace(const AccountCreationSuccessRoute());
     } else if (responseNotNull(loader) && !responseIsSuccess(loader)) {
       snackBarErrorWidget(
         context,
-        loader.read<RegisterBloc>().state.useCaseResponse!.message,
+        loader.read<LoginBloc>().state.response!.message,
       );
     }
   }
 
   bool responseNotNull(BuildContext loader) =>
-      loader.read<RegisterBloc>().state.useCaseResponse != null;
+      loader.read<LoginBloc>().state.response != null;
   bool responseIsSuccess(BuildContext loader) =>
-      loader.read<RegisterBloc>().state.useCaseResponse!.status == 1;
+      loader.read<LoginBloc>().state.response!.status == 1;
 }

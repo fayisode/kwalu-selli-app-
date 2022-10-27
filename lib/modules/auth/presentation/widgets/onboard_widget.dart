@@ -78,7 +78,11 @@ class OnboardWidget extends StatelessWidget {
                     height: 16 * 0.75,
                   ),
                   TertiaryButton(
-                    callback: () {},
+                    callback: () {
+                      AutoRouter.of(context).push(
+                        const UserLoginRoute(),
+                      );
+                    },
                     title: 'Login',
                     isActive: true,
                     definedButtonSize: const DefinedButtonSize.isSmall(),

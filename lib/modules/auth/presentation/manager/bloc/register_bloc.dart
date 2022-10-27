@@ -98,7 +98,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
                 isSubmitting: true,
               ),
             );
-            useCaseResponse = await _registerUser(emit);
+            useCaseResponse = await _registerUser();
           }
           emit(
             state.copyWith(
@@ -156,9 +156,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         ],
       );
 
-  Future<IApiResponse?> _registerUser(
-    Emitter<RegisterState> emit,
-  ) async {
+  Future<IApiResponse?> _registerUser() async {
     IApiResponse? useCaseResponse;
     if (_createUserProfileEntity.isRight) {
       useCaseResponse =

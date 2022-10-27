@@ -4,6 +4,8 @@ import 'package:kwalu_selli/modules/auth/presentation/pages/account_creation_suc
 import 'package:kwalu_selli/modules/auth/presentation/pages/user_account_info.dart';
 import 'package:kwalu_selli/modules/auth/presentation/pages/user_personal_info.dart';
 
+import '../../modules/auth/presentation/pages/user_login_page.dart';
+
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: _routes,
@@ -23,5 +25,8 @@ const List<AutoRoute> _routes = <AutoRoute>[
   ),
   AutoRoute<dynamic>(
     page: AccountCreationSuccessPage,
+  ),
+  AutoRoute<dynamic>(
+    page: UserLoginPage,
   )
 ];

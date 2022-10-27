@@ -5,6 +5,7 @@ import 'package:http_mock_adapter/src/handlers/request_handler.dart';
 import 'package:kwalu_selli/core/utils/error/api_error_response.dart';
 import 'package:kwalu_selli/modules/auth/data/data_sources/auth_data_source.dart';
 import 'package:kwalu_selli/modules/auth/data/models/create_account_model.dart';
+import 'package:kwalu_selli/modules/auth/data/models/login_to_account_model.dart';
 
 void main() {
   late AuthDataSourceImpl dataSource;
@@ -27,11 +28,11 @@ void main() {
       dioAdapter.onPut(
         '$_baseUrl$testPath',
         (MockServer request) => request.reply(201, {'status': 1}),
-        data: _model.toJson(),
+        data: _signUpModel.toJson(),
         queryParameters: <String, dynamic>{},
         headers: <String, dynamic>{},
       );
-      final IApiResponse result = await dataSource.signUpUser(_model);
+      final IApiResponse result = await dataSource.signUpUser(_signUpModel);
 
       expect(result, isA<SuccessApiResponse>());
     });
@@ -48,11 +49,11 @@ void main() {
           };
           return request.reply(404, responseMap);
         },
-        data: _model.toJson(),
+        data: _signUpModel.toJson(),
         queryParameters: <String, dynamic>{},
         headers: <String, dynamic>{},
       );
-      final IApiResponse result = await dataSource.signUpUser(_model);
+      final IApiResponse result = await dataSource.signUpUser(_signUpModel);
 
       expect(result, isA<FailedApiResponse>());
       expect(result.message, message);
@@ -64,11 +65,11 @@ void main() {
       dioAdapter.onPut(
         '$_baseUrl$testPath',
         (MockServer request) => request.reply(500, {'status': 0}),
-        data: _model.toJson(),
+        data: _signUpModel.toJson(),
         queryParameters: <String, dynamic>{},
         headers: <String, dynamic>{},
       );
-      final IApiResponse result = await dataSource.signUpUser(_model);
+      final IApiResponse result = await dataSource.signUpUser(_signUpModel);
 
       expect(result, isA<FailedApiResponse>());
       expect(result.message, 'Error Processing Request ');
@@ -79,11 +80,80 @@ void main() {
       dioAdapter.onPut(
         '$_baseUrl$testPath',
         (MockServer request) => request.reply(200, {'status': 0}),
-        data: _model.toJson(),
+        data: _signUpModel.toJson(),
         queryParameters: <String, dynamic>{},
         headers: <String, dynamic>{},
       );
-      final IApiResponse result = await dataSource.signUpUser(_model);
+      final IApiResponse result = await dataSource.signUpUser(_signUpModel);
+
+      expect(result, isA<FailedApiResponse>());
+    });
+  });
+
+  group('SignIn', () {
+    const String testPath = '/login';
+    test('making a signin with a valid details, return a success request',
+        () async {
+      dioAdapter.onPost(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(201, {'status': 1}),
+        data: _signInModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+      final IApiResponse result = await dataSource.signInUser(_signInModel);
+
+      expect(result, isA<SuccessApiResponse>());
+    });
+
+    test('making a signin with invalid details, return a failed 404 request',
+        () async {
+      const String message = 'Value not valid';
+      dioAdapter.onPost(
+        '$_baseUrl$testPath',
+        (MockServer request) {
+          final Map<String, Object> responseMap = {
+            'status': 0,
+            'message': message
+          };
+          return request.reply(404, responseMap);
+        },
+        data: _signInModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+      final IApiResponse result = await dataSource.signInUser(_signInModel);
+
+      expect(result, isA<FailedApiResponse>());
+      expect(result.message, message);
+    });
+
+    test(
+        'making a signin with internal server error, return a failed 500 request',
+        () async {
+      dioAdapter.onPost(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(500, {'status': 0}),
+        data: _signInModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+      final IApiResponse result = await dataSource.signInUser(_signInModel);
+
+      expect(result, isA<FailedApiResponse>());
+      expect(result.message, 'Error Processing Request ');
+    });
+
+    test('making a signin with conflict details, return a failed request',
+        () async {
+      dioAdapter.onPost(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(200, {'status': 0}),
+        data: _signInModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+      final IApiResponse result = await dataSource.signInUser(_signInModel);
 
       expect(result, isA<FailedApiResponse>());
     });
@@ -102,7 +172,7 @@ String _email() => 'test@test.com';
 
 String _userId() => '1234567890123';
 
-final CreateAccountModel _model = CreateAccountModel(
+final CreateAccountModel _signUpModel = CreateAccountModel(
   firstName: _testValue(),
   lastName: _testValue(),
   email: _email(),
@@ -111,3 +181,6 @@ final CreateAccountModel _model = CreateAccountModel(
   password: _password(),
   location: _testValue(),
 );
+
+final LogInToAccountModel _signInModel =
+    LogInToAccountModel(email: _email(), password: _password());

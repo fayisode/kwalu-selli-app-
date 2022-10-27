@@ -11,11 +11,11 @@ import '../../../../core/utils/extensions/text_ext.dart';
 class UserPersonalInformationPagePlatformScaffold extends StatelessWidget {
   const UserPersonalInformationPagePlatformScaffold({
     required this.scaffoldKey,
-    this.dialogContext,
+    // this.dialogContext,
     Key? key,
   }) : super(key: key);
   final GlobalKey<ScaffoldState> scaffoldKey;
-  final BuildContext? dialogContext;
+  // final BuildContext? dialogContext;
 
   @override
   Widget build(BuildContext context) => PlatformScaffold(
@@ -55,9 +55,9 @@ class UserPersonalInformationPagePlatformScaffold extends StatelessWidget {
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
 
-    properties.add(
-      DiagnosticsProperty<BuildContext?>('dialogContext', dialogContext),
-    );
+    // properties.add(
+    //   DiagnosticsProperty<BuildContext?>('dialogContext', dialogContext),
+    // );
     properties.add(
       DiagnosticsProperty<GlobalKey<ScaffoldState>>('scaffoldKey', scaffoldKey),
     );
