@@ -4,7 +4,10 @@ import 'package:kwalu_selli/modules/auth/presentation/pages/account_creation_suc
 import 'package:kwalu_selli/modules/auth/presentation/pages/user_account_info.dart';
 import 'package:kwalu_selli/modules/auth/presentation/pages/user_personal_info.dart';
 
+import '../../modules/auth/presentation/pages/user_change_password.dart';
 import '../../modules/auth/presentation/pages/user_login_page.dart';
+import '../../modules/auth/presentation/pages/user_reset_password.dart';
+import '../../modules/auth/presentation/pages/user_verify_otp.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -28,5 +31,14 @@ const List<AutoRoute> _routes = <AutoRoute>[
   ),
   AutoRoute<dynamic>(
     page: UserLoginPage,
-  )
+  ),
+  AutoRoute<dynamic>(
+    page: UserChangePasswordPage,
+  ),
+  AutoRoute<dynamic>(
+    page: UserVerifyOtpPage,
+  ),
+  AutoRoute<dynamic>(
+    page: UserResetPasswordPage,
+  ),
 ];
