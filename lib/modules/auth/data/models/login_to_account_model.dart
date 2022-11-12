@@ -9,8 +9,8 @@ class LogInToAccountModel extends Equatable {
 
   factory LogInToAccountModel.fromDomain(ProductUser domain) =>
       LogInToAccountModel(
-        email: domain.object.emailAddress.value,
-        password: domain.object.password.value,
+        email: domain.object.emailAddress?.value ?? '',
+        password: domain.object.password?.value ?? '',
       );
 
   final String email;

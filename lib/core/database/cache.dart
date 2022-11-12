@@ -27,13 +27,6 @@ abstract class ICache {
     return decodedObject;
   }
 
-  Map<String, dynamic> filterObject(
-    Map<String, dynamic> object,
-  ) {
-    object.remove('dev');
-    return object;
-  }
-
   String encodeValue(Map<String, dynamic> value) {
     String encodedValue = '';
     try {
@@ -67,7 +60,7 @@ class ResponseCache extends ICache {
   Future<void> set(String key, Map<String, dynamic> value) async {
     try {
       final SharedPreferences sharedPref = await sharedPreferencesInit();
-      await sharedPref.setString(key, encodeValue(filterObject(value)));
+      await sharedPref.setString(key, encodeValue(value));
     } catch (e) {}
   }
 

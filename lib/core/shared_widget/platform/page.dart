@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../modules/auth/presentation/manager/bloc/login_bloc.dart';
+import '../../../modules/auth/presentation/manager/bloc/password_reset_bloc.dart';
 import '../../../modules/auth/presentation/manager/bloc/register_bloc.dart';
 import '../../enviroment_config/auto_router.gr.dart';
 import '../../enviroment_config/injection.dart';
@@ -24,6 +25,9 @@ class PlatformPage extends StatelessWidget {
         ),
         BlocProvider<LoginBloc>(
           create: (BuildContext context) => getIt<LoginBloc>(),
+        ),
+        BlocProvider<PasswordResetBloc>(
+          create: (BuildContext context) => getIt<PasswordResetBloc>(),
         ),
       ],
       child: MaterialApp.router(

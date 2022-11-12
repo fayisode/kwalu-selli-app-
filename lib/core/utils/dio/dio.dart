@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 const int _defaultConnectTimeout = Duration.millisecondsPerMinute;
 const int _defaultReceiveTimeout = Duration.millisecondsPerMinute;
@@ -146,6 +147,8 @@ class DioClient implements BaseDioClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
+      await catchResponseIdentifierIfExist(response);
+      await catchResponseTokenIfExist(response);
       return response.data!;
     } on FormatException catch (_) {
       throw const FormatException('Unable to process the data');
@@ -175,6 +178,8 @@ class DioClient implements BaseDioClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
+      await catchResponseIdentifierIfExist(response);
+      await catchResponseTokenIfExist(response);
       return response.data!;
     } on FormatException catch (_) {
       throw const FormatException('Unable to process the data');
@@ -204,6 +209,8 @@ class DioClient implements BaseDioClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
+      await catchResponseIdentifierIfExist(response);
+      await catchResponseTokenIfExist(response);
       return response.data!;
     } on FormatException catch (_) {
       throw const FormatException('Unable to process the data');
@@ -211,5 +218,25 @@ class DioClient implements BaseDioClient {
     } catch (e) {
       rethrow;
     }
+  }
+}
+
+Future<void> catchResponseIdentifierIfExist(
+  Response<Map<String, dynamic>> response,
+) async {
+  if (response.headers['identifier'] != null) {
+    final String identifier = response.headers['identifier']?.first ?? '';
+    const FlutterSecureStorage secureStorage = FlutterSecureStorage();
+    await secureStorage.write(key: 'identifier', value: identifier);
+  }
+}
+
+Future<void> catchResponseTokenIfExist(
+  Response<Map<String, dynamic>> response,
+) async {
+  if (response.headers['token'] != null) {
+    final String token = response.headers['token']?.first ?? '';
+    const FlutterSecureStorage secureStorage = FlutterSecureStorage();
+    await secureStorage.write(key: 'token', value: token);
   }
 }

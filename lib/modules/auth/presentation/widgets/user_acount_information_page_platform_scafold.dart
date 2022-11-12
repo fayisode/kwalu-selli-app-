@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:kwalu_selli/modules/auth/presentation/widgets/user_acount_information_page_bottom_nav.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kwalu_selli/modules/auth/presentation/widgets/user_acount_information_page_form_element.dart';
 
 import '../../../../core/color/colors.dart';
 import '../../../../core/shared_widget/platform/platform_scaffold.dart';
+import '../../../../core/shared_widget/widget/custom_bottom_nav.dart';
 import '../../../../core/utils/extensions/page_ext.dart';
 import '../../../../core/utils/extensions/text_ext.dart';
+import '../manager/bloc/register_bloc.dart';
 
 class UserAccountInformationPagePlatformScaffold extends StatelessWidget {
   const UserAccountInformationPagePlatformScaffold({
@@ -14,8 +16,14 @@ class UserAccountInformationPagePlatformScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PlatformScaffold(
-        bottomNavigation: const UserAccountInformationPageBottomNav()
-            .wrapBottomNavigation(context),
+        bottomNavigation: CustomBottomNav(
+          callback: () {
+            context
+                .read<RegisterBloc>()
+                .add(const RegisterEvent.moveToPersonalInfoUsed());
+          },
+          title: 'Continue',
+        ).wrapBottomNavigation(context),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

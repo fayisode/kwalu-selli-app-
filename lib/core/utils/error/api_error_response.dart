@@ -7,6 +7,7 @@ abstract class IApiResponse {
   final String message;
   Future<void> cacheResponse() async {
     final ICache cache = ResponseCache();
+    final value = data;
     await cache.set('response', data ?? <String, dynamic>{});
   }
 }
@@ -17,8 +18,8 @@ class FailedApiResponse extends IApiResponse {
   factory FailedApiResponse.fromJson(Map<String, dynamic> map) =>
       FailedApiResponse(
         map['status'] != null ? map['status'] as int : 0,
-        map['data'] != null ? map['data'] as Map<String, dynamic>? : null,
-        map['message'] != null ? map['message'] as String : '',
+        map['data'] != null ? map['operation'] as Map<String, dynamic>? : null,
+        map['operation'] != null ? map['operation'] as String : '',
       );
 }
 
@@ -30,6 +31,8 @@ class SuccessApiResponse extends IApiResponse {
   factory SuccessApiResponse.fromJson(Map<String, dynamic> map) =>
       SuccessApiResponse(
         map['status'] != null ? map['status'] as int : 0,
-        map['data'] != null ? map['data'] as Map<String, dynamic>? : null,
+        map['operation'] != null
+            ? map['operation'] as Map<String, dynamic>?
+            : null,
       );
 }

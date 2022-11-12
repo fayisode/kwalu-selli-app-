@@ -1,24 +1,33 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:http_mock_adapter/src/handlers/request_handler.dart';
 import 'package:kwalu_selli/core/utils/error/api_error_response.dart';
 import 'package:kwalu_selli/modules/auth/data/data_sources/auth_data_source.dart';
+import 'package:kwalu_selli/modules/auth/data/models/change_password_model.dart';
 import 'package:kwalu_selli/modules/auth/data/models/create_account_model.dart';
 import 'package:kwalu_selli/modules/auth/data/models/login_to_account_model.dart';
+import 'package:kwalu_selli/modules/auth/data/models/reset_password_model.dart';
+import 'package:kwalu_selli/modules/auth/data/models/verify_otp_model.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockFlutterSecureStorage extends Mock implements FlutterSecureStorage {}
 
 void main() {
   late AuthDataSourceImpl dataSource;
   late AuthApi api;
   late Dio dio;
   late DioAdapter dioAdapter;
+  late MockFlutterSecureStorage secureStorage;
 
   setUp(() {
     dio = Dio();
     dioAdapter = DioAdapter(dio: dio);
     dio.httpClientAdapter = dioAdapter;
     api = AuthApi(dio: dio);
-    dataSource = AuthDataSourceImpl(api);
+    secureStorage = MockFlutterSecureStorage();
+    dataSource = AuthDataSourceImpl(api, secureStorage);
   });
 
   group('Sign Up', () {
@@ -158,7 +167,204 @@ void main() {
       expect(result, isA<FailedApiResponse>());
     });
   });
+
+  group('Reset password', () {
+    test(
+        'given a valid reset password model when a reset password action is taken, return a successs request',
+        () async {
+      const String testPath = '/reset-password';
+      dioAdapter.onPut(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(201, <String, dynamic>{
+          'status': 1,
+        }),
+        data: _resetPasswordModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+
+      final IApiResponse result =
+          await dataSource.resetPassword(_resetPasswordModel);
+
+      expect(result, isA<SuccessApiResponse>());
+    });
+
+    test(
+        'given a invalid reset password model when a reset password action is taken, return a failed request',
+        () async {
+      const String testPath = '/reset-password';
+      dioAdapter.onPut(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(404, <String, dynamic>{
+          'status': 0,
+        }),
+        data: _resetPasswordModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+
+      final IApiResponse result =
+          await dataSource.resetPassword(_resetPasswordModel);
+
+      expect(result, isA<FailedApiResponse>());
+    });
+
+    test(
+        'given a invalid reset password model when a reset password action is taken, return a failed request',
+        () async {
+      const String testPath = '/reset-password';
+      dioAdapter.onPut(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(500, <String, dynamic>{
+          'status': 0,
+        }),
+        data: _resetPasswordModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+
+      final IApiResponse result =
+          await dataSource.resetPassword(_resetPasswordModel);
+
+      expect(result, isA<FailedApiResponse>());
+    });
+  });
+
+  group('Verify Otp', () {
+    const String testPath = '/verify-otp';
+
+    test(
+        'given a valid otp model when a verify otp action is taken, return a successs request',
+        () async {
+      when(() => secureStorage.read(key: 'token'))
+          .thenAnswer((_) async => 'token');
+      when(() => secureStorage.read(key: 'identifier'))
+          .thenAnswer((_) async => 'identifier');
+      dioAdapter.onPut(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(201, <String, dynamic>{
+          'status': 1,
+        }),
+        data: await _verifyOtpModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+
+      final IApiResponse result = await dataSource.verifyOtp(_verifyOtpModel);
+
+      expect(result, isA<SuccessApiResponse>());
+    });
+
+    test(
+        'given a invalid otp model when a verify otp action is taken, return a failed request',
+        () async {
+      dioAdapter.onPut(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(404, <String, dynamic>{
+          'status': 0,
+        }),
+        data: await _verifyOtpModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+
+      final IApiResponse result = await dataSource.verifyOtp(_verifyOtpModel);
+
+      expect(result, isA<FailedApiResponse>());
+    });
+
+    test(
+        'given a invalid otp model when a verify otp action is taken, return a failed request',
+        () async {
+      dioAdapter.onPut(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(500, <String, dynamic>{
+          'status': 0,
+        }),
+        data: await _verifyOtpModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+
+      final IApiResponse result = await dataSource.verifyOtp(_verifyOtpModel);
+
+      expect(result, isA<FailedApiResponse>());
+    });
+  });
+
+  group('Change Password', () {
+    const String testPath = '/change-password';
+
+    test(
+        'given a valid change password model when a change password action is taken, return a successs request',
+        () async {
+      when(() => secureStorage.read(key: 'token'))
+          .thenAnswer((_) async => 'token');
+      when(() => secureStorage.read(key: 'identifier'))
+          .thenAnswer((_) async => 'identifier');
+      dioAdapter.onPost(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(201, <String, dynamic>{
+          'status': 1,
+        }),
+        data: await _changePasswordModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+
+      final IApiResponse result =
+          await dataSource.changePassword(_changePasswordModel);
+
+      expect(result, isA<SuccessApiResponse>());
+    });
+
+    test(
+        'given a invalid change password model when a change password action is taken, return a failed request',
+        () async {
+      dioAdapter.onPost(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(404, <String, dynamic>{
+          'status': 0,
+        }),
+        data: await _changePasswordModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+
+      final IApiResponse result =
+          await dataSource.changePassword(_changePasswordModel);
+
+      expect(result, isA<FailedApiResponse>());
+    });
+
+    test(
+        'given a invalid change password model when a change password action is taken, return a failed request',
+        () async {
+      dioAdapter.onPost(
+        '$_baseUrl$testPath',
+        (MockServer request) => request.reply(500, <String, dynamic>{
+          'status': 0,
+        }),
+        data: await _changePasswordModel.toJson(),
+        queryParameters: <String, dynamic>{},
+        headers: <String, dynamic>{},
+      );
+
+      final IApiResponse result =
+          await dataSource.changePassword(_changePasswordModel);
+
+      expect(result, isA<FailedApiResponse>());
+    });
+  });
 }
+
+final ChangePasswordModel _changePasswordModel = ChangePasswordModel(
+  '123456',
+);
+
+final VerifyOtpModel _verifyOtpModel = VerifyOtpModel(
+  '1234',
+);
 
 const String _baseUrl = 'https://kwalu-selli.herokuapp.com/api/v1/auth';
 
@@ -184,3 +390,7 @@ final CreateAccountModel _signUpModel = CreateAccountModel(
 
 final LogInToAccountModel _signInModel =
     LogInToAccountModel(email: _email(), password: _password());
+
+final ResetPasswordModel _resetPasswordModel = ResetPasswordModel(
+  email: _email(),
+);

@@ -1,15 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:kwalu_selli/modules/auth/presentation/widgets/user_login_page_bottom_nav.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kwalu_selli/modules/auth/presentation/widgets/user_login_page_form_element.dart';
 
 import '../../../../core/color/colors.dart';
 import '../../../../core/enviroment_config/auto_router.gr.dart';
 import '../../../../core/shared_widget/platform/platform_scaffold.dart';
+import '../../../../core/shared_widget/widget/custom_bottom_nav.dart';
 import '../../../../core/utils/buttons/buttons.dart';
 import '../../../../core/utils/extensions/page_ext.dart';
 import '../../../../core/utils/extensions/text_ext.dart';
+import '../manager/bloc/login_bloc.dart';
 
 class UserLoginPagePlatformScaffold extends StatelessWidget {
   const UserLoginPagePlatformScaffold({
@@ -18,12 +20,17 @@ class UserLoginPagePlatformScaffold extends StatelessWidget {
     // this.dialogContext,
   }) : super(key: key);
   final GlobalKey<ScaffoldState> scaffoldKey;
+
   // final BuildContext? dialogContext;
   @override
   Widget build(BuildContext context) => PlatformScaffold(
       key: scaffoldKey,
-      bottomNavigation:
-          const UserLoginPageBottomNav().wrapBottomNavigation(context),
+      bottomNavigation: CustomBottomNav(
+        callback: () {
+          context.read<LoginBloc>().add(const LoginEvent.submitUsed());
+        },
+        title: 'SignIn',
+      ).wrapBottomNavigation(context),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,6 +74,7 @@ class UserLoginPagePlatformScaffold extends StatelessWidget {
           ],
         ).wrapWidgetWithPadding(context),
       ));
+
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
